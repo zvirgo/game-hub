@@ -7,8 +7,10 @@ import {
   Typography,
   CardActions,
   Button,
+  Stack,
 } from "@mui/material";
 import PlatformIconList from "./PlatformIconList";
+import CriticScore from "./CriticScore";
 
 interface Props {
   game: Game;
@@ -27,9 +29,12 @@ const GameCard = ({ game }: Props) => {
         <Typography gutterBottom variant="h5" component="div">
           {game.name}
         </Typography>
-        <PlatformIconList
-          platforms={game.parent_platforms.map((p) => p.platform)}
-        />
+        <Stack direction="row" flexWrap="wrap" justifyContent="space-between">
+          <PlatformIconList
+            platforms={game.parent_platforms.map((p) => p.platform)}
+          />
+          <CriticScore score={game.metacritic} />
+        </Stack>
         <Typography variant="body2" color="text.secondary"></Typography>
       </CardContent>
       <CardActions>
