@@ -1,13 +1,6 @@
-import {
-  CssBaseline,
-  IconButton,
-  ThemeProvider,
-  createTheme,
-} from "@mui/material";
-import { useState } from "react";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import Box from "@mui/material/Box";
+import { Box, IconButton, createTheme } from "@mui/material";
 import logo from "../assets/resource/Logo/logo.webp";
 
 interface Props {
