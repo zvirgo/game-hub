@@ -5,6 +5,7 @@ import { CanceledError } from "axios";
 export interface Genre {
   id: number;
   name: string;
+  background_image: string;
 }
 
 interface FetchGenresResponse {
@@ -12,7 +13,7 @@ interface FetchGenresResponse {
   results: Genre[];
 }
 
-const useGames = () => {
+const useGenres = () => {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -37,4 +38,4 @@ const useGames = () => {
 
   return { genres, error, isLoading };
 };
-export default useGames;
+export default useGenres;
