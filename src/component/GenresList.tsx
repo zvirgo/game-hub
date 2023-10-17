@@ -12,9 +12,10 @@ import GenresListSkeleton from "./GenresListSkeleton";
 
 interface Props {
   onSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenresList = ({ onSelectedGenre }: Props) => {
+const GenresList = ({ selectedGenre, onSelectedGenre }: Props) => {
   const { genres, error, isLoading } = useGenres();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -32,7 +33,11 @@ const GenresList = ({ onSelectedGenre }: Props) => {
               </ListItemAvatar>
               <ListItemText>
                 <Typography
-                  sx={{ display: "inline" }}
+                  sx={{
+                    display: "inline",
+                    fontWeight:
+                      genre.id === selectedGenre?.id ? "bold" : "regular",
+                  }}
                   component="span"
                   variant="body2"
                   color="text.primary"

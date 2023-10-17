@@ -58,6 +58,7 @@ function App() {
             <Box sx={{ overflow: "auto" }}>
               <GenresList
                 onSelectedGenre={(genre) => setSelectedGenre(genre)}
+                selectedGenre={selectedGenre}
               />
             </Box>
           </Drawer>
