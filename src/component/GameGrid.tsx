@@ -3,6 +3,7 @@ import GameCard from "./GameCard";
 import { Box, Stack } from "@mui/material";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { Genre } from "../hook/useGenre";
+import PlatformSelector from "./PlatformSelector";
 
 interface Props {
   selectedGenre: Genre | null;
@@ -15,12 +16,13 @@ const GameGrid = ({ selectedGenre }: Props) => {
   return (
     <>
       {error && <p>{error}</p>}
-      <Box mt="10px" p="10px">
+      <PlatformSelector />
+      <Box mt="10px">
         <Stack
           direction="row"
           sx={{ gap: { lg: "25px", xs: "20px" } }}
           flexWrap="wrap"
-          justifyContent="center"
+          justifyContent="space-between"
         >
           {isLoading &&
             skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
