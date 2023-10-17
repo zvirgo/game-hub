@@ -5,7 +5,7 @@ import { CanceledError } from "axios";
 export interface Genre {
   id: number;
   name: string;
-  background_image: string;
+  image_background: string;
 }
 
 interface FetchGenresResponse {
@@ -22,7 +22,7 @@ const useGenres = () => {
     const controller = new AbortController();
     setIsLoading(true);
     apiClient
-      .get<FetchGenresResponse>("/games", { signal: controller.signal })
+      .get<FetchGenresResponse>("/genres", { signal: controller.signal })
       .then((res) => {
         setGenres(res.data.results);
         setIsLoading(false);

@@ -30,8 +30,8 @@ const PlatformIconList = ({ platforms }: Props) => {
 
   return (
     <>
-      {platforms.map((Platform) => (
-        <p>{Platform.slug}</p>
+      {platforms.map((platform) => (
+        <p key={platform.id}>{platform.slug}</p>
         // <Icon name={iconMap[Platform.slug]} />
       ))}
     </>

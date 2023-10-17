@@ -11,11 +11,13 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import GenresList from "./component/GenresList";
+import { Genre } from "./hook/useGenre";
 
 const drawerWidth = 240;
 
 function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
   // Create a Material-UI theme with dark or light mode
   const theme = createTheme({
@@ -54,12 +56,14 @@ function App() {
           >
             <Toolbar />
             <Box sx={{ overflow: "auto" }}>
-              <GenresList />
+              <GenresList
+                onSelectedGenre={(genre) => setSelectedGenre(genre)}
+              />
             </Box>
           </Drawer>
           <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
-            <GameGrid />
+            <GameGrid selectedGenre={selectedGenre} />
           </Box>
         </Box>
       </div>

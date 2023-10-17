@@ -7,9 +7,14 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import useGenres from "../hook/useGenre";
+import useGenres, { Genre } from "../hook/useGenre";
 import GenresListSkeleton from "./GenresListSkeleton";
-const GenresList = () => {
+
+interface Props {
+  onSelectedGenre: (genre: Genre) => void;
+}
+
+const GenresList = ({ onSelectedGenre }: Props) => {
   const { genres, error, isLoading } = useGenres();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -21,9 +26,9 @@ const GenresList = () => {
       <List>
         {genres.map((genre) => (
           <ListItem key={genre.id} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => onSelectedGenre(genre)}>
               <ListItemAvatar>
-                <Avatar alt={genre.name} src={genre.background_image} />
+                <Avatar alt={genre.name} src={genre.image_background} />
               </ListItemAvatar>
               <ListItemText>
                 <Typography

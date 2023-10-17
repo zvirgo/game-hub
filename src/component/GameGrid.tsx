@@ -2,9 +2,14 @@ import useGames from "../hook/useGame";
 import GameCard from "./GameCard";
 import { Box, Stack } from "@mui/material";
 import GameCardSkeleton from "./GameCardSkeleton";
+import { Genre } from "../hook/useGenre";
 
-const GameGrid = () => {
-  const { games, error, isLoading } = useGames();
+interface Props {
+  selectedGenre: Genre | null;
+}
+
+const GameGrid = ({ selectedGenre }: Props) => {
+  const { games, error, isLoading } = useGames(selectedGenre);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
