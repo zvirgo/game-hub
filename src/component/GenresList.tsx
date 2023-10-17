@@ -8,10 +8,16 @@ import {
   Typography,
 } from "@mui/material";
 import useGenres from "../hook/useGenre";
+import GenresListSkeleton from "./GenresListSkeleton";
 const GenresList = () => {
   const { genres, error, isLoading } = useGenres();
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   return (
-    <div>
+    <>
+      {error && <p>{error}</p>}
+      {isLoading &&
+        skeletons.map((skeleton) => <GenresListSkeleton key={skeleton} />)}
       <List>
         {genres.map((genre) => (
           <ListItem key={genre.id} disablePadding>
@@ -33,7 +39,7 @@ const GenresList = () => {
           </ListItem>
         ))}
       </List>
-    </div>
+    </>
   );
 };
 
