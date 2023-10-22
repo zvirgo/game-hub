@@ -16,7 +16,12 @@ const GameGrid = ({ selectedGenre }: Props) => {
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
     null
   );
-  const { games, error, isLoading } = useGames(selectedGenre, selectedPlatform);
+  const [sortOrder, setSortOrder] = useState("");
+  const { games, error, isLoading } = useGames(
+    selectedGenre,
+    selectedPlatform,
+    sortOrder
+  );
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -31,7 +36,10 @@ const GameGrid = ({ selectedGenre }: Props) => {
           onSelectedPlatform={(platform) => setSelectedPlatform(platform)}
           selectedPlatform={selectedPlatform}
         />
-      <SortSelector />
+        <SortSelector
+          onSelectSortOrder={(sortOrder) => setSortOrder(sortOrder)}
+          sortOrder={sortOrder}
+        />
       </Stack>
       <Box mt="10px">
         <Stack
