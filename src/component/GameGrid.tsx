@@ -4,19 +4,26 @@ import { Box, Stack } from "@mui/material";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { Genre } from "../hook/useGenre";
 import PlatformSelector from "./PlatformSelector";
+import { Platform } from "../hook/usePlatforms";
+import { useState } from "react";
 
 interface Props {
   selectedGenre: Genre | null;
 }
 
 const GameGrid = ({ selectedGenre }: Props) => {
-  const { games, error, isLoading } = useGames(selectedGenre);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
+  const { games, error, isLoading } = useGames(selectedGenre,selectedPlatform);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
     <>
       {error && <p>{error}</p>}
-      <PlatformSelector />
+      <PlatformSelector
+      onSelectedPlatform={(platform) => setSelectedPlatform(platform)}
+      selectedPlatform={selectedPlatform} />
       <Box mt="10px">
         <Stack
           direction="row"

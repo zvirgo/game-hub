@@ -1,9 +1,14 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import React from "react";
-import usePlatforms from "../hook/usePlatforms";
+import usePlatforms, { Platform } from "../hook/usePlatforms";
 
-const PlatformSelector = () => {
-  const { platforms, error} = usePlatforms();
+interface Props {
+  onSelectedPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+
+const PlatformSelector = ({ selectedPlatform, onSelectedPlatform }: Props) => {
+  const { platforms, error } = usePlatforms();
+
   return (
     <>
       {error && <p>{error}</p>}
@@ -12,7 +17,11 @@ const PlatformSelector = () => {
           <InputLabel>Platforms</InputLabel>
           <Select label="Platforms">
             {platforms.map((platform) => (
-              <MenuItem key={platform.id} value={platform.name}>
+              <MenuItem
+                key={platform.id}
+                value={platform.name}
+                onClick={() => onSelectedPlatform(platform)}
+              >
                 {platform.name}
               </MenuItem>
             ))}
