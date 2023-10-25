@@ -24,12 +24,25 @@ const GenresList = ({ selectedGenre, onSelectedGenre }: Props) => {
       {error && <p>{error}</p>}
       {isLoading &&
         skeletons.map((skeleton) => <GenresListSkeleton key={skeleton} />)}
+      <Typography
+        variant="h6"
+        sx={{
+          px: { lg: "16px", xs: "10px" },
+          pt: { lg: "8px", xs: "5px" },
+        }}
+      >
+        Genres
+      </Typography>
       <List>
         {genres.map((genre) => (
           <ListItem key={genre.id} disablePadding>
             <ListItemButton onClick={() => onSelectedGenre(genre)}>
               <ListItemAvatar>
-                <Avatar alt={genre.name} src={genre.image_background} />
+                <Avatar
+                  alt={genre.name}
+                  src={genre.image_background}
+                  variant="rounded"
+                />
               </ListItemAvatar>
               <ListItemText>
                 <Typography
