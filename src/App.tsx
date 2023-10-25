@@ -18,6 +18,7 @@ const drawerWidth = 240;
 function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [searchText, setSearchText] = useState<string>("");
 
   // Create a Material-UI theme with dark or light mode
   const theme = createTheme({
@@ -39,7 +40,11 @@ function App() {
             sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
             color="default"
           >
-            <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+            <NavBar
+              darkMode={darkMode}
+              toggleDarkMode={toggleDarkMode}
+              onSearch={(searchText) => setSearchText(searchText)}
+            />
           </AppBar>
 
           <Drawer
@@ -63,7 +68,7 @@ function App() {
           </Drawer>
           <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
-            <GameGrid selectedGenre={selectedGenre} />
+            <GameGrid selectedGenre={selectedGenre} searchText={searchText} />
           </Box>
         </Box>
       </div>

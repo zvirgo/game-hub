@@ -1,12 +1,13 @@
 import { Search } from "@mui/icons-material";
-import {
-  Container,
-  FormControl,
-  InputAdornment,
-  TextField,
-} from "@mui/material";
+import { Container, InputAdornment, TextField } from "@mui/material";
+import { useRef } from "react";
 
-const SearchInput = () => {
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+
+const SearchInput = ({ onSearch }: Props) => {
+  const ref = useRef<HTMLInputElement>(null);
   return (
     <>
       <Container
@@ -16,21 +17,25 @@ const SearchInput = () => {
           maxWidth: "100%",
         }}
       >
-        <FormControl>
-          <TextField
-            fullWidth
-            size="small"
-            variant="outlined"
-            placeholder="Search Games"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </FormControl>
+        <TextField
+          fullWidth
+          size="small"
+          variant="outlined"
+          placeholder="Search Games"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            ),
+          }}
+          inputRef={ref}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              if (ref.current) onSearch(ref.current.value);
+            }
+          }}
+        />
       </Container>
     </>
   );
